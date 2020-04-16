@@ -39,7 +39,16 @@ int pedirNum(void)
 
 unsigned int factorial(unsigned int n)
 {
-    printf("Sin terminar");
+    if(n==0){
+       
+       /* Si el numero introducido es 0, retorna 1, ya que el factorial de 0 es 1*/
+       return 1;
+    }
+    else
+    {
+        /* Si el numero es diferente de 0, retorna el numero multiplicado por la funcion con el valor-1 */
+        return n*factorial(n-1);
+    }
 }
 
 int fibonacci(int n)
@@ -47,14 +56,39 @@ int fibonacci(int n)
     printf("Sin terminar");
 }
 
-int mcm(int m, int n)
+int mcm(int num1, int num2)
 {
-    printf("Sin terminar");
+    if (num2==0)
+    {
+        return num1;
+    }        
+    else
+    {
+        /* Divide el numero 1 entre el 2 hasta llegar a 0 donde se retorna el num1*/   
+        return mcm(num2, num1%num2);
+    }
 }
 
-void torresHanoi(int n, char inicial_rod, char final_rod, char mid_rod)
+void torresHanoi(int n, char posinicial, char posdestino, char posauxiliar)
+/* Esta función lo que hace es convertir un problema complicado en varios simples.
+Exactamente lo que hace es que si nosotros tenemos el problema torresHanoi(n,A,C,B)
+lo divide en {(n-1,A,B,C), (n-2,A,C,B), (n-3, A,B,C), ..., (1, A, C/B, B/C)}*/
 {
-    printf("Sin terminar");
+    if (n == 1) 
+    { 
+        printf(" Mover el disco 1 desde %c hasta %c\n", posinicial, posdestino); 
+        return; 
+    } 
+    else
+    {
+        /* En esta secuencia se cambia de posición todas las fichas hasta llegar a la 1
+        en la cual se entraria al "if" y se repetiria la función hasta que llegar a (n,A,C,B)
+        donde ya estarian todas las fichas ordenadas como en la posición inicial pero en la 
+        tercera bara */
+        torresHanoi(n-1, posinicial, posauxiliar, posdestino); 
+        printf(" Mover el disco %d desde %c hasta %c\n", n, posinicial, posdestino); 
+        torresHanoi(n-1, posauxiliar, posdestino, posinicial); 
+    }
 }
 
 int cercaDicotomica(int array[], int l, int r, int x)
