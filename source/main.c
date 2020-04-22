@@ -6,8 +6,8 @@
 /* Programa Principal */
 int main() {
 	int opcion, numero, result, num_mcm1, num_mcm2, numhanoi;
-	unsigned int numfact;
 	char enter;
+	bool correcte = true;
 
 /* Cargar el menu principal */
 	print_menu();
@@ -20,9 +20,9 @@ int main() {
 		{
 			case 1:
 				printf("\n\n---  Factorial ---\n");
-				printf("Introduce un numero (positivo)\n");
-				scanf("%d", &numfact);
-				printf("El factorial de %d es %d\n", numfact, factorial(numfact));
+				numero = pedirNum();
+				result = factorial(numero);
+				printf("El factorial de %d es %d\n\n", numero, result);
 				break;
 
 			case 2:
@@ -32,27 +32,34 @@ int main() {
 
 			case 3:
 				printf("\n\n---  Maxim Comú divisor ---\n");
-				printf("Introduce un numero (positivo)\n");
 				printf("Numero 1: ");
-				scanf("%d", &num_mcm1);
-				printf("\nNumero 2: ");
-				scanf("%d", &num_mcm2);
-				printf("El maximo comun divisor de %d y %d es: %d\n", num_mcm1, num_mcm2, mcm(num_mcm1, num_mcm2));
-
+				num_mcm1 = pedirNum();
+				printf("Numero 2: ");
+				num_mcm2 = pedirNum();
+				result = mcm(num_mcm1, num_mcm2);
+				printf("El maximo comun divisor de %d y %d es: %d\n\n", num_mcm1, num_mcm2, result);
 				break;
 
 			case 4:
 				printf("\n\n---  Moviments Torres de Hanoi ---\n");
-				printf("Intoduce un numero (entre 3 y 10).");
-				scanf("%d", &numhanoi);
-				if (numhanoi > 10 || numhanoi < 3)
+				numhanoi = pedirNum();
+
+				if (numhanoi < 3 || numhanoi > 10)
+					correcte = false;
+
+				while(!correcte)
 				{
-					printf("El numero debe estar entre 3 y 10.");
-				} 
-				else
-				{
-					torresHanoi(numhanoi, 'A', 'C' , 'B');
+					printf("\nEl numero tiene que estar entre 3 y 10\n");
+					numhanoi = pedirNum();
+					if (numhanoi < 3 || numhanoi > 10)
+						correcte = false;
+					else
+						correcte = true;
+					
 				}
+					
+				torresHanoi(numhanoi, 'A', 'C' , 'B');
+				printf("\n");
 				break;
 
 			case 5:

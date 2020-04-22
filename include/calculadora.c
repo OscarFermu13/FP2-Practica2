@@ -30,7 +30,7 @@ int pedirNum(void)
 
     while (numero < 0)
     {
-        printf("Introduce el nuemro deseado (positivo):\n");
+        printf("Introduce el numero deseado (positivo):\n");
         scanf("%d", &numero);
     }
 
