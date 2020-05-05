@@ -9,8 +9,6 @@ int main() {
 	char enter;
 	bool correcte = true;
 
-	FILE *file = fopen("data/cercaDicotomica.txt", "r");
-
 	/* Cargar el menu principal */
 	print_menu();
 	scanf("%d", &opcion);
@@ -69,7 +67,10 @@ int main() {
 			case 5:
 				printf("\n\n---  Cerca dicotòmica ---\n");
 
-				int array[] = {2, 5, 7, 9, 11};
+				//int array[] = {2, 5, 7, 9, 11};
+
+				int *array;
+				array = leerArchivo();
 
 				int n = sizeof(array) / sizeof(array[0]);
 
@@ -106,6 +107,4 @@ int main() {
 		scanf("%d", &opcion);
 		scanf("%c", &enter);
 	}
-
-	fclose(file);
 }

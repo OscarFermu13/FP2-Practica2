@@ -9,6 +9,8 @@ void print_menu(void);
 
 int pedirNum(void);
 
+int * leerArchivo();
+
 unsigned int factorial(unsigned int n);
 int fibonacci(int n);
 int mcm(int m, int n);

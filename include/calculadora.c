@@ -37,6 +37,28 @@ int pedirNum(void)
     return numero;
 }
 
+int * leerArchivo()
+{
+    FILE *file = fopen("data/cercaDicotomica.txt", "r");
+    int i = 0;
+    static int array[100] = {0};
+
+    if (file == NULL)
+        printf("El archivo no existe.\n\n");
+
+    while(!feof(file))
+    {
+        int num = 0;
+        fscanf(file, "%d", &num);
+        array[i] = num;
+        i++;
+    }
+
+    fclose(file);
+
+    return array;
+}
+
 unsigned int factorial(unsigned int n)
 {
     if(n==0)
