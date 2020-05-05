@@ -9,7 +9,9 @@ int main() {
 	char enter;
 	bool correcte = true;
 
-/* Cargar el menu principal */
+	FILE *file = fopen("data/cercaDicotomica.txt", "r");
+
+	/* Cargar el menu principal */
 	print_menu();
 	scanf("%d", &opcion);
 	scanf("%c", &enter);
@@ -27,7 +29,9 @@ int main() {
 
 			case 2:
 				printf("\n\n---  Fibonacci ---\n");
-				// fibonacci()
+				numero = pedirNum();
+				result = fibonacci(numero);
+				printf("El fibonacci de %d es %d\n\n", numero, result);
 				break;
 
 			case 3:
@@ -64,7 +68,16 @@ int main() {
 
 			case 5:
 				printf("\n\n---  Cerca dicotòmica ---\n");
-				// cercaDicotomica()
+
+				int array[] = {2, 5, 7, 9, 11};
+
+				int n = sizeof(array) / sizeof(array[0]);
+
+				numero = pedirNum();
+				result = cercaDicotomica(array, 0, n-1, numero);
+				
+				(result == -1) ? printf("El numero %d no esta en el conjunto de numeros\n\n", numero) 
+							   : printf("El numero %d esta en la posicion %d\n\n", numero, result + 1);
 				break;
 
 			case 6:
@@ -93,4 +106,6 @@ int main() {
 		scanf("%d", &opcion);
 		scanf("%c", &enter);
 	}
+
+	fclose(file);
 }

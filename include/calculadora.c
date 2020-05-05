@@ -25,7 +25,7 @@ int pedirNum(void)
 {
     int numero = 0;
 
-    printf("Introduce el nuemro deseado (positivo):\n");
+    printf("Introduce el numero deseado (positivo):\n");
     scanf("%d", &numero);
 
     while (numero < 0)
@@ -39,34 +39,28 @@ int pedirNum(void)
 
 unsigned int factorial(unsigned int n)
 {
-    if(n==0){
-       
+    if(n==0)
        /* Si el numero introducido es 0, retorna 1, ya que el factorial de 0 es 1*/
        return 1;
-    }
     else
-    {
         /* Si el numero es diferente de 0, retorna el numero multiplicado por la funcion con el valor-1 */
         return n*factorial(n-1);
-    }
 }
 
 int fibonacci(int n)
 {
-    printf("Sin terminar");
+    if (n <= 1 )
+        return n;
+    return fibonacci(n-1) + fibonacci(n-2);
 }
 
 int mcm(int num1, int num2)
 {
     if (num2==0)
-    {
-        return num1;
-    }        
+        return num1;       
     else
-    {
         /* Divide el numero 1 entre el 2 hasta llegar a 0 donde se retorna el num1*/   
         return mcm(num2, num1%num2);
-    }
 }
 
 void torresHanoi(int n, char posinicial, char posdestino, char posauxiliar)
@@ -93,7 +87,21 @@ lo divide en {(n-1,A,B,C), (n-2,A,C,B), (n-3, A,B,C), ..., (1, A, C/B, B/C)}*/
 
 int cercaDicotomica(int array[], int l, int r, int x)
 {
-    printf("Sin terminar");
+    if(r >= l)
+    {
+        int mid = l + (r - l)/2;
+
+        if (array[mid] == x )
+            return mid;
+        
+        if (array[mid] > x) 
+            return cercaDicotomica(array, l, mid-l, x);
+
+        return cercaDicotomica(array, mid+l, r, x);        
+        
+    }
+
+    return -1;
 }
 
 int sumaDigital(int n)
