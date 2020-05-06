@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "../include/calculadora.h"
 
@@ -39,7 +40,7 @@ int main() {
 				printf("Numero 2: ");
 				num_mcm2 = pedirNum();
 				result = mcm(num_mcm1, num_mcm2);
-				printf("El maximo comun divisor de %d y %d es: %d\n\n", num_mcm1, num_mcm2, result);
+				printf("El maximo comun divisor de %d y %d es %d\n\n", num_mcm1, num_mcm2, result);
 				break;
 
 			case 4:
@@ -60,22 +61,32 @@ int main() {
 					
 				}
 					
-				torresHanoi(numhanoi, 'A', 'C' , 'B');
+				torresHanoi(numhanoi, 'A', 'B', 'C');
 				printf("\n");
 				break;
 
 			case 5:
 				printf("\n\n---  Cerca dicotòmica ---\n");
 
-				//int array[] = {2, 5, 7, 9, 11};
+				int elementos = 0, i;
+				
+				printf("Numero de elementos del array - ");
+				elementos = pedirNum();
+				i = elementos;
+				printf("\n");
+				
+				int array[100];
 
-				int *array;
-				array = leerArchivo();
+				while(i > 0)
+				{
+					printf("array[%d] - ", i - 1);
+					array[i-1] = pedirNum();
+					i--;
+				}
 
-				int n = sizeof(array) / sizeof(array[0]);
-
+				printf("\n%d - Numero buscado - ", elementos);
 				numero = pedirNum();
-				result = cercaDicotomica(array, 0, n-1, numero);
+				result = cercaDicotomica(array, 0, elementos-1, numero);
 				
 				(result == -1) ? printf("El numero %d no esta en el conjunto de numeros\n\n", numero) 
 							   : printf("El numero %d esta en la posicion %d\n\n", numero, result + 1);
@@ -85,14 +96,14 @@ int main() {
 				printf("\n\n---  Suma digital ---\n");
 				numero = pedirNum();
 				result = sumaDigital(numero);
-				printf("El valor es :%d\n\n", result);
+				printf("La suma digital de %d es %d\n\n", numero, result);
 				break;
 
 			case 7:
 				printf("\n\n---  Arrel Digital ---\n");
 				numero = pedirNum();
 				result = arrelDigital(numero);
-				printf("El valor es :%d\n\n", result);
+				printf("La raiz digital de %d es %d\n\n", numero, result);
 				break;
 
 			case 0:
